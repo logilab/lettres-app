@@ -20,8 +20,7 @@ pip install -r requirements.txt
 python3 flask_app.py
 ```
 - Lancer une requête de contrôle :
-(ex: http://127.0.0.1:5004/lettres/api/1.0/documents?page[size]=2)
-
+(ex: http://127.0.0.1:5004/ecco/api/1.0/documents?page[size]=2)
 
 ## Indexation
 
