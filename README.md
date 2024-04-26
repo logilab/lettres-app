@@ -27,7 +27,7 @@ python3 flask_app.py
 Installer la version Elasticsearch conforme aux spécifications.
 Avec docker cela donne :
 ```bash
-docker run --name es-lettres -d -p 9200:9200  elasticsearch:8.12.1
+docker run --name es-lettres -d -p 9200:9200 -e "discovery.type=single-node" -e "xpack.security.enabled=false" -e "xpack.security.http.ssl.enabled=false" elasticsearch:8.12.1
 docker exec es-lettres bash -c "bin/elasticsearch-plugin install analysis-icu"
 docker restart es-lettres
 ```
@@ -38,6 +38,11 @@ sur le port 5004, utiliser la commande :
 python3 manage.py (--config=<dev/prod>) db-reindex --rebuild --host=http://localhost:5004
 ```
 Cette commande crée les index de l'application sur la base des [mappings](./elasticsearch/)
+
+Pour vérifier que les index ont bien été créés:
+```bash
+curl http://localhost:9200/_cat/indices
+```
 
 Pour les indexations suivantes, exécuter :
 ```bash
